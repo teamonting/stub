@@ -31,7 +31,5 @@
     "@tsconfig/strictest": "^2.0.8"
   },
   "pinDependencies": {},
-  "localPeerDependencies": {},
-  "dependencies": {},
-  "peerDependencies": {}
+  "localPeerDependencies": {}
 }
