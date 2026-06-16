@@ -1,0 +1,16 @@
+{
+  "name": "@onting/stub",
+  "version": "0.0.0-0",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./dist/stub.js",
+  "typings": "./dist/stub.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/stub.d.ts",
+      "default": "./dist/stub.js"
+    }
+  }
+}
