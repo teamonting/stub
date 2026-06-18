@@ -69,6 +69,6 @@
   "license": "MIT",
   "pinDependencies": {},
   "dependencies": {
-    "@onting/rpc": "^0.1.0-main.202606142148.67b5d79"
+    "@onting/rpc": "^0.1.0-main.202606180926.69793b5"
   }
 }
