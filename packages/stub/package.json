@@ -6,12 +6,12 @@
     "access": "public"
   },
   "type": "module",
-  "main": "./dist/stub.js",
-  "typings": "./dist/stub.d.ts",
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/stub.d.ts",
-      "default": "./dist/stub.js"
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
     }
   },
   "files": [
