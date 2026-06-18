@@ -20,7 +20,7 @@ const stubDeclaration: StubDeclaration<Stub> = {
       }
     };
   },
-  keys: ['captureScreenshot', 'getTimestamp']
+  keys: ['captureScreenshot', 'getTimestamp', 'setViewport']
 };
 
 export default stubDeclaration;
