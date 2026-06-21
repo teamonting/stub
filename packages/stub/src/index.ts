@@ -17,7 +17,8 @@ const stubDeclaration: StubDeclaration<Stub> = {
     'reload',
     'setViewport',
     'traverseHistory',
-    'test'
+    'test',
+    'type'
   ]
 };
 
