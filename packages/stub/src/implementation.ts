@@ -5,6 +5,7 @@ import { v7 } from 'uuid';
 import stubDeclaration from './index.ts';
 import type { NavigateResult, ReadinessState, Stub } from './types.ts';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Locator = ((await import('selenium-webdriver/bidi/browsingContext.js')).default as any).Locator;
 
 const stubHostImplementation: StubImplementation<Stub> = {
@@ -83,6 +84,7 @@ const stubHostImplementation: StubImplementation<Stub> = {
       async traverseHistory(delta: number): Promise<void> {
         await browsingContext.traverseHistory(delta);
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       async test(whatever: any): Promise<any> {
         console.log({ whatever });
 

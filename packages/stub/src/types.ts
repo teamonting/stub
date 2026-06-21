@@ -23,6 +23,8 @@ type Stub = {
   reload(ignoreCache?: boolean, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
   setViewport(width: number, height: number, devicePixelRatio?: number | undefined): Promise<void>;
   traverseHistory(delta: number): Promise<void>;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   test(whatever: any): Promise<void>;
 };
 

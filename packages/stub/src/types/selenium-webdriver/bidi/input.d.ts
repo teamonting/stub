@@ -8,7 +8,7 @@ declare module 'selenium-webdriver/bidi/input.js' {
    */
   enum RemoteReferenceType {
     HANDLE = 'handle',
-    SHARED_ID = 'sharedId',
+    SHARED_ID = 'sharedId'
   }
 
   /**
@@ -114,6 +114,7 @@ declare module 'selenium-webdriver/bidi/input.js' {
      * @param {ActionSequence[]} actions - The actions to be performed.
      * @returns {Promise<any>} A promise that resolves with the response from the server.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     perform(browsingContextId: string, actions: ActionSequence[]): Promise<any>;
 
     /**
@@ -122,6 +123,7 @@ declare module 'selenium-webdriver/bidi/input.js' {
      * @param {string} browsingContextId - The ID of the browsing context.
      * @returns {Promise<any>} A promise that resolves when the release actions are sent.
      */
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     release(browsingContextId: string): Promise<any>;
 
     /**
