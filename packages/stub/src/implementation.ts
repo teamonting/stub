@@ -1,3 +1,5 @@
+/// <reference path="./types/selenium-webdriver/bidi/input.d.ts" />
+
 import type { StubImplementation } from '@onting/rpc';
 import { WebElement } from 'selenium-webdriver';
 import getInputInstance from 'selenium-webdriver/bidi/input.js';
