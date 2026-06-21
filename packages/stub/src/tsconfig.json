@@ -2,6 +2,7 @@
 {
   "compilerOptions": {
     "allowImportingTsExtensions": true,
+    "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "jsx": "react",
     "module": "ESNext",

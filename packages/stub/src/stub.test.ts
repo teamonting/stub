@@ -1,14 +1,14 @@
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import * as NodeTest from 'node:test';
-import stubDeclaration from './stub.ts';
+import implementation from './implementation.ts';
 
 scenario(
-  'stubDeclaration',
+  'stubImplementation',
   bdd => {
     bdd
       .given('a stub implementation', () =>
-        stubDeclaration.implement(
+        implementation.implement(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           {} as any
         )
