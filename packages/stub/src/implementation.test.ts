@@ -7,9 +7,9 @@ scenario(
   bdd => {
     bdd
       .given('nothing', () => {})
-      .when('default import is loaded', async () => await import('./index.ts'))
-      .then('should not have implement() function', (_, module) => {
-        expect(module.default).not.toHaveProperty('implement');
+      .when('default import is loaded', async () => await import('./implementation.ts'))
+      .then('should have implement() function', (_, module) => {
+        expect(module.default).toHaveProperty('implement', expect.any(Function));
       })
       .and('should have keys property', (_, module) => {
         expect(module.default).toHaveProperty('keys', expect.any(Object));
