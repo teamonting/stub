@@ -36,6 +36,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "^20.10.4",
     "@onting/common": "^0.0.0-0",
+    "@testduet/given-when-then": "^0.1.0",
     "@tsconfig/strictest": "^2.0.8",
     "expect": "^30.4.1",
     "resolve-cwd": "^3.0.0",
