@@ -113,9 +113,16 @@ const stubHostImplementation: StubImplementation<Stub> = {
       },
       async type(
         text: string,
-        init?: { clickBeforeType?: WebElement | undefined; selectAllBeforeType?: boolean | undefined } | undefined
+        init?:
+          | {
+              pause?: number | undefined;
+              selectAllBeforeType?: boolean | undefined;
+            }
+          | undefined
       ): Promise<void> {
         const browsingContextId = browsingContext.id;
+        const pause = init?.pause ?? 0;
+        const pauseActionItem = { duration: pause, type: 'pause' } as unknown as ActionItem;
 
         if (!browsingContextId) {
           throw new Error('Invalid browsing context ID');
@@ -126,25 +133,6 @@ const stubHostImplementation: StubImplementation<Stub> = {
         await input.init();
 
         try {
-          const sequence: ActionSequence[] = [];
-
-          if (init?.clickBeforeType) {
-            sequence.push({
-              actions: [
-                {
-                  origin: { element: { sharedId: await init.clickBeforeType.getId() }, type: 'element' },
-                  type: 'pointerMove',
-                  x: 0,
-                  y: 0
-                },
-                { button: 0, type: 'pointerDown' },
-                { button: 0, type: 'pointerUp' }
-              ],
-              id: v7(),
-              type: 'pointer'
-            });
-          }
-
           const actions: ActionItem[] = [];
 
           if (init?.selectAllBeforeType) {
@@ -152,19 +140,20 @@ const stubHostImplementation: StubImplementation<Stub> = {
               // Press-and-hold CTRL key.
               // https://www.w3.org/TR/webdriver/#keyboard-actions
               { type: 'keyDown', value: '\uE009' },
+              pauseActionItem,
               { type: 'keyDown', value: 'a' },
+              pauseActionItem,
               { type: 'keyUp', value: 'a' },
+              pauseActionItem,
               { type: 'keyUp', value: '\uE009' }
             );
           }
 
           for (const character of text.split('')) {
-            actions.push({ type: 'keyDown', value: character }, { type: 'keyUp', value: character });
+            actions.push({ type: 'keyDown', value: character }, pauseActionItem, { type: 'keyUp', value: character });
           }
 
-          sequence.push({ actions, id: v7(), type: 'key' });
-
-          await input.perform(browsingContextId, sequence);
+          await input.perform(browsingContextId, [{ actions, id: v7(), type: 'key' }]);
         } finally {
           await input.release(browsingContextId);
         }
