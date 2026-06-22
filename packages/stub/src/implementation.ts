@@ -9,6 +9,7 @@ import stubDeclaration from './index.ts';
 import type { NavigateResult, ReadinessState, Stub } from './types.ts';
 
 type ActionSequence = ArrayElement<Parameters<Awaited<ReturnType<typeof getInputInstance>>['perform']>[1]>;
+type ActionItem = ArrayElement<ActionSequence['actions']>;
 type ArrayElement<T> = T extends Array<infer P> ? P : never;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -110,7 +111,10 @@ const stubHostImplementation: StubImplementation<Stub> = {
 
         return await browsingContext.locateElement(Locator.css('[data-testid="click-me"]'));
       },
-      async type(text: string, init?: { clickBeforeType?: WebElement | undefined } | undefined): Promise<void> {
+      async type(
+        text: string,
+        init?: { clickBeforeType?: WebElement | undefined; selectAllBeforeType?: boolean | undefined } | undefined
+      ): Promise<void> {
         const browsingContextId = browsingContext.id;
 
         if (!browsingContextId) {
@@ -126,8 +130,6 @@ const stubHostImplementation: StubImplementation<Stub> = {
 
           if (init?.clickBeforeType) {
             sequence.push({
-              type: 'pointer',
-              id: v7(),
               actions: [
                 {
                   origin: { element: { sharedId: await init.clickBeforeType.getId() }, type: 'element' },
@@ -137,18 +139,30 @@ const stubHostImplementation: StubImplementation<Stub> = {
                 },
                 { button: 0, type: 'pointerDown' },
                 { button: 0, type: 'pointerUp' }
-              ]
+              ],
+              id: v7(),
+              type: 'pointer'
             });
           }
 
-          sequence.push({
-            type: 'key',
-            id: v7(),
-            actions: text.split('').flatMap(character => [
-              { type: 'keyDown', value: character },
-              { type: 'keyUp', value: character }
-            ])
-          });
+          const actions: ActionItem[] = [];
+
+          if (init?.selectAllBeforeType) {
+            actions.push(
+              // Press-and-hold CTRL key.
+              // https://www.w3.org/TR/webdriver/#keyboard-actions
+              { type: 'keyDown', value: '\uE009' },
+              { type: 'keyDown', value: 'a' },
+              { type: 'keyUp', value: 'a' },
+              { type: 'keyUp', value: '\uE009' }
+            );
+          }
+
+          for (const character of text.split('')) {
+            actions.push({ type: 'keyDown', value: character }, { type: 'keyUp', value: character });
+          }
+
+          sequence.push({ actions, id: v7(), type: 'key' });
 
           await input.perform(browsingContextId, sequence);
         } finally {
