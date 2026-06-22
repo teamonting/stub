@@ -135,6 +135,13 @@ const stubHostImplementation: StubImplementation<Stub> = {
         try {
           const actions: ActionItem[] = [];
 
+          // We could not do "clickBeforeType" as it seems there is bug in Chrome 149.
+          // After using mouse/pointer to click on the element, the first key press is lost.
+          // This is done in the very same `perform()` call.
+          // If we can brew the "clickBeforeType" option, we want to keep `perform()` once as it is what devs expect.
+          // We tried to add a pause between mouse and keyboard actions, but it does not resolve the issue.
+          // It works in Firefox 151 though.
+
           if (init?.selectAllBeforeType) {
             actions.push(
               // Press-and-hold CTRL key.
