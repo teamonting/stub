@@ -9,7 +9,7 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "exports": {
-    "./implementation": {
+    "./implementation.js": {
       "types": "./dist/implementation.d.ts",
       "default": "./dist/implementation.js"
     },
