@@ -15,10 +15,15 @@ scenario(
             },
             async setCurrent() {}
           }))
-        ).implement(
+        ).implement({
+          browsingContext: {
+            getTopLevelContexts() {
+              return [{ url: 'https://example.com' }];
+            }
+          },
+          webDriver: {}
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          {} as any
-        )
+        } as any)
       )
       .when('getTimestamp is called', precondition => precondition.getTimestamp())
       .then('should return a string starting with "Hello, World!"', (_, result) =>
