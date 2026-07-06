@@ -25,12 +25,15 @@ type Stub = {
 
   click(
     element: WebElement,
-    init?: { button?: number | undefined; x?: number | undefined; y: number | undefined }
+    init?: { button?: number | undefined; x?: number | undefined; y?: number | undefined }
   ): Promise<void>;
   type(text: string): Promise<void>;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   test(whatever: any): Promise<void>;
+
+  getNextSnapshot(type: 'image/png'): Promise<string | undefined>;
+  setCurrentSnapshot(type: 'image/png', data: string): Promise<void>;
 };
 
 export type { NavigateResult, ReadinessState, Stub };

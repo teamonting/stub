@@ -9,4 +9,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Added snapshot store in PR [#3](https://github.com/teamonting/stub/pull/3), by [@compulim](https://github.com/compulim)
 - Initial public release

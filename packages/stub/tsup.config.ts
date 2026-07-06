@@ -4,9 +4,10 @@ import overrideConfig from './tsup.config.override.ts';
 const baseConfig: Options = {
   dts: true,
   entry: {
-    implementation: './src/implementation.ts',
+    host: './src/host.ts',
     index: './src/index.ts'
   },
+  noExternal: ['@onting/rpc'],
   sourcemap: true
 };
 
