@@ -7,13 +7,15 @@ scenario(
   'createStubImplementation',
   bdd => {
     bdd
-      .given('a stub implementation', () =>
-        createStubImplementation(() => ({
-          async getNext() {
-            return undefined;
-          },
-          async setCurrent() {}
-        })).implement(
+      .given('a stub implementation', async () =>
+        (
+          await createStubImplementation(() => ({
+            async getNext() {
+              return undefined;
+            },
+            async setCurrent() {}
+          }))
+        ).implement(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           {} as any
         )
