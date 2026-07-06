@@ -1,13 +1,13 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path="./types/selenium-webdriver/bidi/input.d.ts" />
 
-import { defineImplementation } from '@onting/rpc';
+import { defineImplementation, type StubImplementation } from '@onting/rpc';
+import { onErrorResumeNext } from 'on-error-resume-next';
 import { WebElement } from 'selenium-webdriver';
 import getInputInstance from 'selenium-webdriver/bidi/input.js';
 import { v7 } from 'uuid';
 import contract, { type SnapshotStore } from './index.ts';
-import type { NavigateResult, ReadinessState } from './type.ts';
-import { onErrorResumeNext } from 'on-error-resume-next';
+import type { NavigateResult, ReadinessState, Stub } from './type.ts';
 
 type ActionSequence = ArrayElement<Parameters<Awaited<ReturnType<typeof getInputInstance>>['perform']>[1]>;
 type ActionItem = ArrayElement<ActionSequence['actions']>;
@@ -16,7 +16,9 @@ type ArrayElement<T> = T extends Array<infer P> ? P : never;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Locator = ((await import('selenium-webdriver/bidi/browsingContext.js')).default as any).Locator;
 
-const createStubImplementation = (getSnapshotStore: (url: URL) => SnapshotStore) =>
+const createStubImplementation = async (
+  getSnapshotStore: (url: URL) => SnapshotStore
+): Promise<StubImplementation<Stub>> =>
   defineImplementation(contract, {
     async implement({ browsingContext, webDriver }) {
       const urlString = (await browsingContext.getTopLevelContexts()).find(context => context.url)?.url;
