@@ -74,7 +74,7 @@
   "license": "MIT",
   "pinDependencies": {},
   "dependencies": {
-    "@onting/rpc": "^0.1.1-main.202606282345.cc1ac44",
+    "@onting/rpc": "^0.2.0",
     "on-error-resume-next": "^2.0.3",
     "uuid": "^14.0.1"
   },
