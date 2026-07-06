@@ -1,7 +1,7 @@
-import type { StubDeclaration } from '@onting/rpc';
-import type { Stub } from './types';
+import { defineContract } from '@onting/rpc';
+import type { Stub } from './type.ts';
 
-const stubDeclaration: StubDeclaration<Stub> = {
+const stubDeclaration = defineContract<Stub>({
   keys: [
     'activate',
     'back',
@@ -18,8 +18,11 @@ const stubDeclaration: StubDeclaration<Stub> = {
     'setViewport',
     'traverseHistory',
     'test',
-    'type'
+    'type',
+    'getNextSnapshot',
+    'setCurrentSnapshot'
   ]
-};
+});
 
 export default stubDeclaration;
+export type { SnapshotStore } from './SnapshotStore.ts';

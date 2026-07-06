@@ -9,9 +9,9 @@
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "exports": {
-    "./implementation.js": {
-      "types": "./dist/implementation.d.ts",
-      "default": "./dist/implementation.js"
+    "./host.js": {
+      "types": "./dist/host.d.ts",
+      "default": "./dist/host.js"
     },
     ".": {
       "types": "./dist/index.d.ts",
@@ -74,7 +74,8 @@
   "license": "MIT",
   "pinDependencies": {},
   "dependencies": {
-    "@onting/rpc": "^0.1.0",
+    "@onting/rpc": "^0.1.1-main.202606282345.cc1ac44",
+    "on-error-resume-next": "^2.0.3",
     "uuid": "^14.0.1"
   },
   "peerDependencies": {

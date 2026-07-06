@@ -7,7 +7,7 @@ scenario(
   bdd => {
     bdd
       .given('nothing', () => {})
-      .when('default import is loaded', async () => await import('./implementation.ts'))
+      .when('default import is loaded', async () => await import('./host.ts'))
       .then('should have implement() function', (_, module) => {
         expect(module.default).toHaveProperty('implement', expect.any(Function));
       })
