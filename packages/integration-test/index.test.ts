@@ -1,14 +1,19 @@
-import stubImplementation from '@onting/stub/implementation';
+import createStubImplementation from '@onting/stub/host.js';
 import { scenario } from '@testduet/given-when-then';
 import { expect } from 'expect';
 import * as NodeTest from 'node:test';
 
 scenario(
-  'stubImplementation',
+  'createStubImplementation',
   bdd => {
     bdd
       .given('a stub implementation', () =>
-        stubImplementation.implement(
+        createStubImplementation(() => ({
+          async getNext() {
+            return undefined;
+          },
+          async setCurrent() {}
+        })).implement(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           {} as any
         )
