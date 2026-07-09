@@ -4,6 +4,7 @@ import overrideConfig from './tsup.config.override.ts';
 const baseConfig: Options = {
   dts: true,
   entry: {
+    expectMatcher: './src/expectMatcher.ts',
     host: './src/host.ts',
     index: './src/index.ts'
   },
