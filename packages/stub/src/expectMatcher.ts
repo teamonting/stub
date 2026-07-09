@@ -1,1 +1,1 @@
-export { default as createExpectMatcher } from './expectMatcher/createExpectMatcher';
+export { default as createExpectMatcher } from './expectMatcher/createExpectMatcher.ts';
