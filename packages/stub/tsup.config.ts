@@ -8,7 +8,7 @@ const baseConfig: Options = {
     host: './src/host.ts',
     index: './src/index.ts'
   },
-  noExternal: ['@onting/rpc'],
+  noExternal: ['@onting/rpc', 'base64-arraybuffer', 'on-error-resume-next', 'pixelmatch', 'pngjs'],
   sourcemap: true
 };
 
