@@ -14,15 +14,15 @@ type ImageSnapshotMatcher = (
 ) => AsyncExpectationResult;
 
 function createToMatchImageSnapshot(stub: Stub): ImageSnapshotMatcher {
-  return async function toMatchImageSnapshot(currentBase64Image, pixelMatchOptions) {
-    const current = await parsePNG(currentBase64Image);
+  return async function toMatchImageSnapshot(currentImageBase64, pixelMatchOptions) {
+    const current = await parsePNG(currentImageBase64);
 
     const baselineImageBase64 = await stub.getNextSnapshot('image/png');
 
     if (!baselineImageBase64) {
-      await stub.setCurrentSnapshot('image/png', currentBase64Image);
+      await stub.setCurrentSnapshot('image/png', currentImageBase64);
 
-      const png = await parsePNG(currentBase64Image);
+      const png = await parsePNG(currentImageBase64);
       const dataURL = `data:image/png;base64,${encode(PNG.sync.write(png) satisfies Buffer as unknown as ArrayBuffer)}`;
 
       console.log(
@@ -54,7 +54,9 @@ function createToMatchImageSnapshot(stub: Stub): ImageSnapshotMatcher {
       diff.bitblt(sideBySide, 0, 0, width, height, width, 0);
       current.bitblt(sideBySide, 0, 0, width, height, width * 2, 0);
 
-      const dataURL = `data:image/png;base64,${encode(PNG.sync.write(sideBySide) satisfies Buffer as unknown as ArrayBuffer)}`;
+      const diffImageBase64 = encode(PNG.sync.write(sideBySide) satisfies Buffer as unknown as ArrayBuffer);
+
+      const dataURL = `data:image/png;base64,${diffImageBase64}`;
 
       console.log(
         '⛔ Image snapshot DOES NOT match baseline\n%c %c\nNumber of pixel differ from baseline: %d',
@@ -62,6 +64,9 @@ function createToMatchImageSnapshot(stub: Stub): ImageSnapshotMatcher {
         '',
         numDiffPixels
       );
+
+      // TODO: It seems console.log is the only way to pass the diff image to the harness.
+      console.log('⚖️🖼️', { baselineImageBase64, currentImageBase64, diffImageBase64 });
 
       return {
         message: () => `Image has ${numDiffPixels} pixels different from baseline`,
