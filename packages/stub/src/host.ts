@@ -179,6 +179,19 @@ const createStubImplementation = async (
             await input.release(browsingContextId);
           }
         },
+        async inputPerformActions(actions: readonly ActionSequence[], noAutoRelease?: boolean | undefined) {
+          const browsingContextId = browsingContext.id;
+
+          if (!browsingContextId) {
+            throw new Error('Invalid browsing context ID');
+          }
+
+          const input = await getInputInstance(webDriver);
+
+          await input.init();
+          await input.perform(browsingContextId, [...actions]);
+          noAutoRelease || (await input.release(browsingContextId));
+        },
 
         async getNextSnapshot(type) {
           return snapshotStore.getNext(type);

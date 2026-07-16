@@ -13,6 +13,7 @@ const stubDeclaration = defineContract<Stub>({
     'forward',
     'getTimestamp',
     'handleUserPrompt',
+    'inputPerformActions',
     'navigate',
     'reload',
     'setViewport',
