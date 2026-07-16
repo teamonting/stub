@@ -26,3 +26,4 @@ const stubDeclaration = defineContract<Stub>({
 
 export default stubDeclaration;
 export type { SnapshotStore } from './SnapshotStore.ts';
+export type { Stub };

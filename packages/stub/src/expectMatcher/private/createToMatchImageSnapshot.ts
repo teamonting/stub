@@ -65,8 +65,8 @@ function createToMatchImageSnapshot(stub: Stub): ImageSnapshotMatcher {
         numDiffPixels
       );
 
-      // TODO: It seems console.log is the only way to pass the diff image to the harness.
-      console.log('⚖️🖼️', { baselineImageBase64, currentImageBase64, diffImageBase64 });
+      // It seems console.log is the only way to pass the diff image to the harness.
+      console.log('🖼️⚖️', { baselineImageBase64, currentImageBase64, diffImageBase64 });
 
       return {
         message: () => `Image has ${numDiffPixels} pixels different from baseline`,
