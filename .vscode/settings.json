@@ -1,6 +1,9 @@
 {
   "chat.tools.terminal.autoApprove": {
+    "npm run precommit": true,
+    "npm run precommit:eslint": true,
+    "npm run precommit:publint": true,
     "npm run precommit:typescript:production": true,
-    "npm run precommit:eslint": true
+    "npm run precommit:typescript:test": true
   }
 }
