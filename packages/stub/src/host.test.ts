@@ -2,6 +2,8 @@ import { scenario } from '@testduet/given-when-then';
 import expect from 'expect';
 import * as NodeTest from 'node:test';
 
+Object.assign(globalThis, { PACKAGE_VERSION: '0.0.0-test' });
+
 scenario(
   'index file',
   bdd => {
@@ -34,8 +36,8 @@ scenario(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any)
       )
-      .then('its getTimestamp() function should return a string starting with "Hello, World!"', (_, result) =>
-        expect(result.getTimestamp()).toEqual(expect.stringMatching(/^Hello,\sWorld!/u))
+      .then('its getVersion() function should return the package version', (_, result) =>
+        expect(result.getVersion()).toBe('0.0.0-test')
       );
   },
   NodeTest

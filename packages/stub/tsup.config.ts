@@ -1,7 +1,14 @@
 import { defineConfig, type Options } from 'tsup';
 import overrideConfig from './tsup.config.override.ts';
 
+declare global {
+  const process: { env?: { npm_package_version?: string | undefined } | undefined } | undefined;
+}
+
 const baseConfig: Options = {
+  define: {
+    PACKAGE_VERSION: JSON.stringify(process?.env?.npm_package_version || '0.0.0-0')
+  },
   dts: true,
   entry: {
     expectMatcher: './src/expectMatcher.ts',

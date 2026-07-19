@@ -12,6 +12,7 @@
   },
   "extends": "./tsconfig.precommit.test.custom.json",
   "include": [
+    "**/*.d.ts",
     "__tests__/**/*.cjs",
     "__tests__/**/*.cts",
     "__tests__/**/*.js",

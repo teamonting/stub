@@ -3,25 +3,29 @@ import type { Stub } from './type.ts';
 
 const stubDeclaration = defineContract<Stub>({
   keys: [
+    // Almost ready
+    'getVersion',
+    'inputPerformActions',
+
+    // Improving
+    'EXPERIMENTAL_click',
+    'EXPERIMENTAL_type',
+
+    // Need review
     'activate',
     'back',
     'captureBoxScreenshot',
     'captureElementScreenshot',
     'captureScreenshot',
-    'click',
     'close',
     'forward',
-    'getTimestamp',
+    'getNextSnapshot',
     'handleUserPrompt',
-    'inputPerformActions',
     'navigate',
     'reload',
+    'setCurrentSnapshot',
     'setViewport',
-    'traverseHistory',
-    'test',
-    'type',
-    'getNextSnapshot',
-    'setCurrentSnapshot'
+    'traverseHistory'
   ]
 });
 
