@@ -12,20 +12,20 @@ const stubDeclaration = defineContract<Stub>({
     'EXPERIMENTAL_type',
 
     // Need review
-    'activate',
     'back',
+    'browsingContextActivate',
+    'browsingContextClose',
+    'browsingContextNavigate',
+    'browsingContextReload',
+    'browsingContextTraverseHistory',
     'captureBoxScreenshot',
     'captureElementScreenshot',
     'captureScreenshot',
-    'close',
     'forward',
     'getNextSnapshot',
     'handleUserPrompt',
-    'navigate',
-    'reload',
     'setCurrentSnapshot',
-    'setViewport',
-    'traverseHistory'
+    'setViewport'
   ]
 });
 

@@ -28,18 +28,18 @@ type Stub = {
   // #endregion
 
   // #region Need review
-  activate(): Promise<void>;
   back(): Promise<void>;
+  browsingContextActivate(): Promise<void>;
+  browsingContextClose(): Promise<void>;
+  browsingContextNavigate(url: string, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
+  browsingContextReload(ignoreCache?: boolean, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
+  browsingContextTraverseHistory(delta: number): Promise<void>;
   captureBoxScreenshot(x: number, y: number, width: number, height: number): Promise<string>;
   captureElementScreenshot(sharedId: string, handle?: string | undefined): Promise<string>;
   captureScreenshot(): Promise<string>;
-  close(): Promise<void>;
   forward(): Promise<void>;
   handleUserPrompt(accept?: boolean | undefined, userText?: string | undefined): Promise<void>;
-  navigate(url: string, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
-  reload(ignoreCache?: boolean, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
   setViewport(width: number, height: number, devicePixelRatio?: number | undefined): Promise<void>;
-  traverseHistory(delta: number): Promise<void>;
   // #endregion
 };
 
