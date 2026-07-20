@@ -7,7 +7,7 @@ export default function withSetCurrentSnapshot<T extends object>(
   return value => ({
     ...value,
     async setCurrentSnapshot(type, data) {
-      await snapshotStore.setCurrent(type, data);
+      await snapshotStore.setCurrent(type, Buffer.from(data, 'base64').buffer);
     }
   });
 }
