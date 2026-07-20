@@ -15,4 +15,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Snapshot store has signature changed from `string` (base64) to `ArrayBuffer`, in PR [#XXX](https://github.com/teamonting/stub/pull/XXX), by [@compulim](https://github.com/compulim)
+- Snapshot store has signature changed from `string` (base64) to `ArrayBuffer`, in PR [#5](https://github.com/teamonting/stub/pull/5), by [@compulim](https://github.com/compulim)
