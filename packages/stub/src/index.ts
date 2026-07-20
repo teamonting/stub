@@ -13,17 +13,17 @@ const stubDeclaration = defineContract<Stub>({
 
     // Need review
     'browsingContextActivate',
+    'browsingContextCaptureBoxScreenshot',
+    'browsingContextCaptureElementScreenshot',
+    'browsingContextCaptureScreenshot',
     'browsingContextClose',
+    'browsingContextHandleUserPrompt',
     'browsingContextNavigate',
     'browsingContextReload',
+    'browsingContextSetViewport',
     'browsingContextTraverseHistory',
-    'captureBoxScreenshot',
-    'captureElementScreenshot',
-    'captureScreenshot',
     'getNextSnapshot',
-    'handleUserPrompt',
-    'setCurrentSnapshot',
-    'setViewport'
+    'setCurrentSnapshot'
   ]
 });
 

@@ -3,22 +3,22 @@ import { onErrorResumeNext } from 'on-error-resume-next';
 import contract, { type SnapshotStore } from '../index.ts';
 import type { Stub } from '../type.ts';
 import withBrowsingContextActivate from './browsingContext/activate.ts';
+import withBrowsingContextCaptureBoxScreenshot from './browsingContext/captureBoxScreenshot.ts';
+import withBrowsingContextCaptureElementScreenshot from './browsingContext/captureElementScreenshot.ts';
+import withBrowsingContextCaptureScreenshot from './browsingContext/captureScreenshot.ts';
 import withBrowsingContextClose from './browsingContext/close.ts';
+import withBrowsingContextHandleUserPrompt from './browsingContext/handleUserPrompt.ts';
 import withBrowsingContextNavigate from './browsingContext/navigate.ts';
 import withBrowsingContextReload from './browsingContext/reload.ts';
+import withBrowsingContextSetViewport from './browsingContext/setViewport.ts';
 import withBrowsingContextTraverseHistory from './browsingContext/traverseHistory.ts';
-import withCaptureBoxScreenshot from './captureBoxScreenshot.ts';
-import withCaptureElementScreenshot from './captureElementScreenshot.ts';
-import withCaptureScreenshot from './captureScreenshot.ts';
 import withClick from './experimental/click.ts';
 import withType from './experimental/type.ts';
 import withGetNextSnapshot from './getNextSnapshot.ts';
 import withGetVersion from './getVersion.ts';
-import withHandleUserPrompt from './handleUserPrompt.ts';
 import withInputPerformActions from './inputPerformActions.ts';
 import compose from './private/compose.ts';
 import withSetCurrentSnapshot from './setCurrentSnapshot.ts';
-import withSetViewport from './setViewport.ts';
 
 const createStubImplementation = async (
   getSnapshotStore: (url: URL) => SnapshotStore
@@ -39,18 +39,18 @@ const createStubImplementation = async (
       return compose(
         withGetVersion(environment),
         withBrowsingContextActivate(environment),
+        withBrowsingContextCaptureBoxScreenshot(environment),
+        withBrowsingContextCaptureElementScreenshot(environment),
+        withBrowsingContextCaptureScreenshot(environment),
         withBrowsingContextClose(environment),
+        withBrowsingContextHandleUserPrompt(environment),
         withBrowsingContextNavigate(environment),
         withBrowsingContextReload(environment),
+        withBrowsingContextSetViewport(environment),
         withBrowsingContextTraverseHistory(environment),
-        withCaptureBoxScreenshot(environment),
-        withCaptureElementScreenshot(environment),
-        withCaptureScreenshot(environment),
         withGetNextSnapshot(snapshotStore),
-        withHandleUserPrompt(environment),
         withInputPerformActions(environment),
         withSetCurrentSnapshot(snapshotStore),
-        withSetViewport(environment),
         withClick(environment),
         withType(environment)
       )({});
