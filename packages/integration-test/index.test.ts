@@ -25,9 +25,9 @@ scenario(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any)
       )
-      .when('getTimestamp is called', precondition => precondition.getTimestamp())
-      .then('should return a string starting with "Hello, World!"', (_, result) =>
-        expect(result).toEqual(expect.stringMatching(/^Hello,\sWorld!/u))
+      .when('getVersion is called', precondition => precondition.getVersion())
+      .then('should return a semver string', (_, result) =>
+        expect(result).toEqual(expect.stringMatching(/^\d+\.\d+\.\d+(-|$)/u))
       );
   },
   NodeTest
