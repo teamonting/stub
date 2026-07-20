@@ -28,7 +28,6 @@ type Stub = {
   // #endregion
 
   // #region Need review
-  back(): Promise<void>;
   browsingContextActivate(): Promise<void>;
   browsingContextClose(): Promise<void>;
   browsingContextNavigate(url: string, readinessState?: ReadinessState | undefined): Promise<NavigateResult>;
@@ -37,7 +36,6 @@ type Stub = {
   captureBoxScreenshot(x: number, y: number, width: number, height: number): Promise<string>;
   captureElementScreenshot(sharedId: string, handle?: string | undefined): Promise<string>;
   captureScreenshot(): Promise<string>;
-  forward(): Promise<void>;
   handleUserPrompt(accept?: boolean | undefined, userText?: string | undefined): Promise<void>;
   setViewport(width: number, height: number, devicePixelRatio?: number | undefined): Promise<void>;
   // #endregion

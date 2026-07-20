@@ -12,7 +12,6 @@ const stubDeclaration = defineContract<Stub>({
     'EXPERIMENTAL_type',
 
     // Need review
-    'back',
     'browsingContextActivate',
     'browsingContextClose',
     'browsingContextNavigate',
@@ -21,7 +20,6 @@ const stubDeclaration = defineContract<Stub>({
     'captureBoxScreenshot',
     'captureElementScreenshot',
     'captureScreenshot',
-    'forward',
     'getNextSnapshot',
     'handleUserPrompt',
     'setCurrentSnapshot',

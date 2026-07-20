@@ -2,7 +2,6 @@ import { defineImplementation, type StubImplementation } from '@onting/rpc';
 import { onErrorResumeNext } from 'on-error-resume-next';
 import contract, { type SnapshotStore } from '../index.ts';
 import type { Stub } from '../type.ts';
-import withBack from './back.ts';
 import withBrowsingContextActivate from './browsingContext/activate.ts';
 import withBrowsingContextClose from './browsingContext/close.ts';
 import withBrowsingContextNavigate from './browsingContext/navigate.ts';
@@ -13,7 +12,6 @@ import withCaptureElementScreenshot from './captureElementScreenshot.ts';
 import withCaptureScreenshot from './captureScreenshot.ts';
 import withClick from './experimental/click.ts';
 import withType from './experimental/type.ts';
-import withForward from './forward.ts';
 import withGetNextSnapshot from './getNextSnapshot.ts';
 import withGetVersion from './getVersion.ts';
 import withHandleUserPrompt from './handleUserPrompt.ts';
@@ -40,7 +38,6 @@ const createStubImplementation = async (
 
       return compose(
         withGetVersion(environment),
-        withBack(environment),
         withBrowsingContextActivate(environment),
         withBrowsingContextClose(environment),
         withBrowsingContextNavigate(environment),
@@ -49,7 +46,6 @@ const createStubImplementation = async (
         withCaptureBoxScreenshot(environment),
         withCaptureElementScreenshot(environment),
         withCaptureScreenshot(environment),
-        withForward(environment),
         withGetNextSnapshot(snapshotStore),
         withHandleUserPrompt(environment),
         withInputPerformActions(environment),
