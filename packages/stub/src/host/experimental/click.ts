@@ -11,12 +11,12 @@ export default function withClick<T extends object>({
   return value => ({
     ...value,
     async EXPERIMENTAL_click(
-      element: WebElement,
+      element?: WebElement | undefined,
       init?: {
         button?: number | undefined;
         pointerType?: 'mouse' | 'pen' | 'touch';
         x?: number | undefined;
-        y: number | undefined;
+        y?: number | undefined;
       }
     ): Promise<void> {
       const browsingContextId = browsingContext.id;
@@ -39,7 +39,11 @@ export default function withClick<T extends object>({
             },
             actions: [
               {
-                origin: { element: { sharedId: await element.getId() }, type: 'element' },
+                ...(element
+                  ? {
+                      origin: { element: { sharedId: await element.getId() }, type: 'element' }
+                    }
+                  : {}),
                 type: 'pointerMove',
                 x: init?.x ?? 0,
                 y: init?.y ?? 0

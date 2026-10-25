@@ -21,10 +21,20 @@ type Stub = {
 
   // #region Reviewing
   EXPERIMENTAL_click(
-    element: WebElement,
-    init?: { button?: number | undefined; x?: number | undefined; y?: number | undefined }
+    element?: WebElement | undefined,
+    init?: {
+      button?: number | undefined;
+      pointerType?: 'mouse' | 'pen' | 'touch';
+      x?: number | undefined;
+      y?: number | undefined;
+    }
   ): Promise<void>;
-  EXPERIMENTAL_type(text: string): Promise<void>;
+  EXPERIMENTAL_type(
+    /**
+     * @note https://www.w3.org/TR/webdriver1/#keyboard-actions
+     */
+    text: string
+  ): Promise<void>;
   // #endregion
 
   // #region Need review
