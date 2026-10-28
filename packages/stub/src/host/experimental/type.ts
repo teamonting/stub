@@ -58,8 +58,24 @@ export default function withType<T extends object>({
           );
         }
 
+        let mode: 'keyDown' | 'keyPress' | 'keyUp' = 'keyPress';
+
         for (const character of text.split('')) {
-          actions.push({ type: 'keyDown', value: character }, pauseActionItem, { type: 'keyUp', value: character });
+          if (character === '\uF000') {
+            mode = 'keyDown';
+          } else if (character === '\uF001') {
+            mode = 'keyUp';
+          } else {
+            if (mode === 'keyDown' || mode === 'keyPress') {
+              actions.push({ type: 'keyDown', value: character }, pauseActionItem);
+            }
+
+            if (mode === 'keyPress' || mode === 'keyUp') {
+              actions.push({ type: 'keyUp', value: character }, pauseActionItem);
+            }
+
+            mode = 'keyPress';
+          }
         }
 
         await input.perform(browsingContextId, [{ actions, id: v7(), type: 'key' }]);
