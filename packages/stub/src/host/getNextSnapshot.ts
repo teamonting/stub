@@ -7,9 +7,9 @@ export default function withGetNextSnapshot<T extends object>(
   return value => ({
     ...value,
     async getNextSnapshot(type) {
-      const arrayBuffer = await snapshotStore.getNext(type);
+      const buffer = await snapshotStore.getNext(type);
 
-      return arrayBuffer && Buffer.from(arrayBuffer).toString('base64');
+      return buffer && Buffer.from(buffer).toString('base64');
     }
   });
 }

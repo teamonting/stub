@@ -1,6 +1,6 @@
 interface SnapshotStore {
-  getNext(type: 'image/png'): Promise<ArrayBuffer | undefined>;
-  setCurrent(type: 'image/png', data: ArrayBuffer): Promise<void>;
+  getNext(type: 'image/png'): Promise<Uint8Array | undefined>;
+  setCurrent(type: 'image/png', data: Uint8Array): Promise<void>;
 }
 
 export type { SnapshotStore };
